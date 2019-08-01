@@ -38,13 +38,13 @@ fun Activity.getAuth(): Auth? {
 }
 
 fun Activity.setAuth(auth: Auth?): Boolean {
-    if (auth == null)
-        return false
-
     val userPrefs = this.getSharedPreferences(Vars.PREF_AUTH, Context.MODE_PRIVATE)
     val editor = userPrefs.edit()
     editor.putString(Vars.PREF_AUTH_KEY, Gson().toJson(auth))
     editor.apply()
+
+    if (auth == null)
+        return false
 
     return true
 }
@@ -59,4 +59,12 @@ fun Activity.setProfile(profile: Profile?): Boolean {
     editor.apply()
 
     return true
+}
+
+fun Activity.getProfile(): Profile? {
+    val profilePrefs = this.getSharedPreferences(Vars.PREF_PROFILE, Context.MODE_PRIVATE)
+
+    val profileStr = profilePrefs.getString(Vars.PREF_PROFILE_KEY, "") ?: return null
+
+    return Gson().fromJson(profileStr, Profile::class.java)
 }

@@ -1,4 +1,4 @@
-package id.rent.android.data.dao
+package id.rent.android.data.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

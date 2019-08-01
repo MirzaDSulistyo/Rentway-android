@@ -18,6 +18,7 @@ import id.rent.android.data.vo.Status
 import id.rent.android.databinding.ActivityHomeBinding
 import id.rent.android.model.Auth
 import id.rent.android.ui.fragment.HomeFragment
+import id.rent.android.ui.fragment.ProfileFragment
 import id.rent.android.utility.AppExecutors
 import id.rent.android.utility.getAuth
 import id.rent.android.utility.setHud
@@ -84,7 +85,7 @@ class HomeActivity : AppCompatActivity(), HasSupportFragmentInjector {
                 R.id.favorite_menu -> fragment = HomeFragment()
                 R.id.subscriptions_menu -> fragment = HomeFragment()
                 R.id.inbox_menu -> fragment = HomeFragment()
-                R.id.account_menu -> fragment = HomeFragment()
+                R.id.account_menu -> fragment = ProfileFragment()
             }
             loadFragment(fragment)
         }

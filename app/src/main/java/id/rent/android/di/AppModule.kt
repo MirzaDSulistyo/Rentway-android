@@ -5,8 +5,8 @@ import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import id.rent.android.data.api.ApiService
-import id.rent.android.data.dao.ProductDao
-import id.rent.android.data.dao.UserDao
+import id.rent.android.data.database.dao.ProductDao
+import id.rent.android.data.database.dao.UserDao
 import id.rent.android.data.database.AppDb
 import id.rent.android.utility.LiveDataCallAdapterFactory
 import id.rent.android.utility.Vars

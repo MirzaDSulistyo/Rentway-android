@@ -2,8 +2,8 @@ package id.rent.android.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import id.rent.android.data.dao.ProductDao
-import id.rent.android.data.dao.UserDao
+import id.rent.android.data.database.dao.ProductDao
+import id.rent.android.data.database.dao.UserDao
 import id.rent.android.model.Auth
 import id.rent.android.model.Product
 import id.rent.android.model.User

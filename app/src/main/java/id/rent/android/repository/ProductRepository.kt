@@ -3,7 +3,7 @@ package id.rent.android.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import id.rent.android.data.api.*
-import id.rent.android.data.dao.ProductDao
+import id.rent.android.data.database.dao.ProductDao
 import id.rent.android.data.database.AppDb
 import id.rent.android.data.vo.Resource
 import id.rent.android.model.Product
