@@ -24,6 +24,10 @@ class User {
     @Expose
     var email: String? = null
 
+    @SerializedName("created_at")
+    @Expose
+    var createdAt: String? = null
+
     @SerializedName("updated_at")
     @Expose
     var updatedAt: String? = null

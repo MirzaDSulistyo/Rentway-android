@@ -3,5 +3,5 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="save">save</string>
-    <string name="connection_not_available">Connection is not available</string>
+    <string name="connection_not_available">Tidak ada koneksi</string>
 </resources>

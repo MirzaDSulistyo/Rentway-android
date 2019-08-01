@@ -8,6 +8,9 @@ import id.rent.android.ui.activity.*
 @Module
 abstract class MainActivityModule {
     @ContributesAndroidInjector(modules = [FragmentBuildersModule::class])
+    abstract fun contributeLoginActivity(): LoginActivity
+
+    @ContributesAndroidInjector(modules = [FragmentBuildersModule::class])
     abstract fun contributeMainActivity(): HomeActivity
 
 }

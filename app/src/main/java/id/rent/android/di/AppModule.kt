@@ -5,6 +5,7 @@ import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import id.rent.android.data.api.ApiService
+import id.rent.android.data.dao.UserDao
 import id.rent.android.data.database.AppDb
 import id.rent.android.utility.LiveDataCallAdapterFactory
 import id.rent.android.utility.Vars
@@ -24,7 +25,7 @@ class AppModule {
     @Provides
     fun provideApiService(): ApiService {
         return Retrofit.Builder()
-            .baseUrl("https://tranquil-shore-53254.herokuapp.com/api/")
+            .baseUrl("http://192.168.43.216:3000/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(LiveDataCallAdapterFactory())
             .build()
@@ -40,40 +41,10 @@ class AppModule {
             .build()
     }
 
-//    @Singleton
-//    @Provides
-//    fun provideUserDao(db: AppDb): UserDao {
-//        return db.userDao()
-//    }
-//
-//    @Singleton
-//    @Provides
-//    fun provideProductDao(db: AppDb): ProductDao {
-//        return db.productDao()
-//    }
-//
-//    @Singleton
-//    @Provides
-//    fun provideFavoriteDao(db: AppDb): FavoriteDao {
-//        return db.favoriteDao()
-//    }
-//
-//    @Singleton
-//    @Provides
-//    fun provideBoxDao(db: AppDb): BoxDao {
-//        return db.boxDao()
-//    }
-//
-//    @Singleton
-//    @Provides
-//    fun providePlanDao(db: AppDb): PlanDao {
-//        return db.planDao()
-//    }
-//
-//    @Singleton
-//    @Provides
-//    fun provideSubsDao(db: AppDb): SubsDao {
-//        return db.subsDao()
-//    }
+    @Singleton
+    @Provides
+    fun provideUserDao(db: AppDb): UserDao {
+        return db.userDao()
+    }
 
 }
