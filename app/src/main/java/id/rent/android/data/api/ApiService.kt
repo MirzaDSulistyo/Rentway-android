@@ -1,7 +1,11 @@
 package id.rent.android.data.api
 
+import androidx.lifecycle.LiveData
 import id.rent.android.model.Auth
+import id.rent.android.model.Product
+import id.rent.android.model.ProductList
 import id.rent.android.model.Profile
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -21,4 +25,37 @@ interface ApiService {
     fun profile(
         @Header("token") token: String
     ): Call<Profile>
+
+    /* ===== PRODUCT ===== */
+
+    @GET("product")
+    fun getProduct(
+        @Header("token") token: String
+    ): LiveData<ApiResponse<ProductList>>
+
+    @GET("product/list/{id}")
+    fun getProductById(
+        @Header("token") token: String,
+        @Path("id") id: String
+    ): LiveData<ApiResponse<ProductList>>
+
+    @POST("product/new")
+    fun postProduct(
+        @Header("token") token: String,
+        @Body body: RequestBody
+    ): Call<Product>
+
+    @FormUrlEncoded
+    @PUT("product/{id}")
+    fun putProduct(
+        @Header("token") token: String,
+        @Path("id") id: String,
+        @FieldMap fields: Map<String, String>
+    ): Call<Product>
+
+    @DELETE("product/{id}")
+    fun deleteProduct(
+        @Header("token") token: String,
+        @Path("id") id: String
+    ): Call<Product>
 }

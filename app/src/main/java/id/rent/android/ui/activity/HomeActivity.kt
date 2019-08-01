@@ -17,6 +17,7 @@ import id.rent.android.R
 import id.rent.android.data.vo.Status
 import id.rent.android.databinding.ActivityHomeBinding
 import id.rent.android.model.Auth
+import id.rent.android.ui.fragment.HomeFragment
 import id.rent.android.utility.AppExecutors
 import id.rent.android.utility.getAuth
 import id.rent.android.utility.setHud
@@ -66,18 +67,39 @@ class HomeActivity : AppCompatActivity(), HasSupportFragmentInjector {
         } else {
             viewModel.setAuth(auth?.token)
 
-            tv_home_two.text = Gson().toJson(auth)
-
             viewModel.profile.observe(this, Observer {
                 if (it.status == Status.SUCCESS) {
                     Timber.d("profile ${Gson().toJson(it.data)}")
-
-                    tv_home.text = Gson().toJson(it.data)
 
                     this.setProfile(it.data)
                 }
             })
         }
+
+        bottom_navigation.setOnNavigationItemSelectedListener { item ->
+            var fragment : Fragment? = null
+
+            when (item.itemId) {
+                R.id.home_menu -> fragment = HomeFragment()
+                R.id.favorite_menu -> fragment = HomeFragment()
+                R.id.subscriptions_menu -> fragment = HomeFragment()
+                R.id.inbox_menu -> fragment = HomeFragment()
+                R.id.account_menu -> fragment = HomeFragment()
+            }
+            loadFragment(fragment)
+        }
+
+        loadFragment(HomeFragment())
+    }
+
+    private fun loadFragment(fragment: Fragment?): Boolean {
+        if (fragment != null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment, fragment)
+                .commit()
+            return true
+        }
+        return false
     }
 
     override fun supportFragmentInjector() = dispatchingAndroidInjector

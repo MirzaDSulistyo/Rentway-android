@@ -2,31 +2,11 @@ package id.rent.android.di
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import id.rent.android.ui.fragment.HomeFragment
 
 @Suppress("unused")
 @Module
 abstract class FragmentBuildersModule {
-//    @ContributesAndroidInjector
-//    abstract fun contributeHomeFragment(): HomeFragment
-//
-//    @ContributesAndroidInjector
-//    abstract fun contributeFavoriteFragment(): FavoriteFragment
-//
-//    @ContributesAndroidInjector
-//    abstract fun contributeSubscriptionsFragment(): SubscriptionsFragment
-//
-//    @ContributesAndroidInjector
-//    abstract fun contributeProfileFragment(): ProfileFragment
-//
-//    @ContributesAndroidInjector
-//    abstract fun contributeProductFragment(): ProductFragment
-//
-//    @ContributesAndroidInjector
-//    abstract fun contributeBoxFragment(): BoxFragment
-//
-//    @ContributesAndroidInjector
-//    abstract fun contributeNewOrderFragment(): NewOrderFragment
-//
-//    @ContributesAndroidInjector
-//    abstract fun contributeSubscriberFragment(): SubscriberFragment
+    @ContributesAndroidInjector
+    abstract fun contributeHomeFragment(): HomeFragment
 }

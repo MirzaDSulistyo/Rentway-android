@@ -2,8 +2,10 @@ package id.rent.android.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import id.rent.android.data.dao.ProductDao
 import id.rent.android.data.dao.UserDao
 import id.rent.android.model.Auth
+import id.rent.android.model.Product
 import id.rent.android.model.User
 
 /**
@@ -11,14 +13,17 @@ import id.rent.android.model.User
  */
 @Database(
     entities = [
+        Auth::class,
         User::class,
-        Auth::class
+        Product::class
        ],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class AppDb : RoomDatabase() {
 
     abstract fun userDao(): UserDao
+
+    abstract fun productDao(): ProductDao
 
 }

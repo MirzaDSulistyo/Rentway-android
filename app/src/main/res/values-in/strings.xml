@@ -4,4 +4,12 @@
     <string name="password">Password</string>
     <string name="save">save</string>
     <string name="connection_not_available">Tidak ada koneksi</string>
+
+    <string name="home">Home</string>
+    <string name="favorite">Favorite</string>
+    <string name="subscriptions">Subscriptions</string>
+    <string name="inbox">Inbox</string>
+    <string name="account">Account</string>
+    <string name="empty_result">Data is empty</string>
+    <string name="rent">Rent</string>
 </resources>

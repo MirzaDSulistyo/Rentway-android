@@ -5,6 +5,7 @@ import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import id.rent.android.data.api.ApiService
+import id.rent.android.data.dao.ProductDao
 import id.rent.android.data.dao.UserDao
 import id.rent.android.data.database.AppDb
 import id.rent.android.utility.LiveDataCallAdapterFactory
@@ -45,6 +46,12 @@ class AppModule {
     @Provides
     fun provideUserDao(db: AppDb): UserDao {
         return db.userDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideProductDao(db: AppDb): ProductDao {
+        return db.productDao()
     }
 
 }

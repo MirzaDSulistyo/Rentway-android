@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
+import id.rent.android.viewmodel.ProductViewModel
 import id.rent.android.viewmodel.UserViewModel
 import id.rent.android.viewmodel.ViewModelFactory
 
@@ -15,7 +16,12 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(UserViewModel::class)
-    abstract fun bindDataUserViewModel(user: UserViewModel): ViewModel
+    abstract fun bindDataUserViewModel(viewModel: UserViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ProductViewModel::class)
+    abstract fun bindDataProductViewModel(viewModel: ProductViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
