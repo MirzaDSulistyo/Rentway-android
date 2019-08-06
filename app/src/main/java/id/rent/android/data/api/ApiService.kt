@@ -34,10 +34,10 @@ interface ApiService {
     ): LiveData<ApiResponse<ProductList>>
 
     @GET("product/list/{id}")
-    fun getProductById(
+    fun getProductByStore(
         @Header("token") token: String,
         @Path("id") id: String
-    ): LiveData<ApiResponse<ProductList>>
+    ): Call<ProductList>
 
     @POST("product/new")
     fun postProduct(

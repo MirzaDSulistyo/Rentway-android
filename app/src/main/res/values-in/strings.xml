@@ -12,4 +12,6 @@
     <string name="account">Account</string>
     <string name="empty_result">Data is empty</string>
     <string name="rent">Rent</string>
+    <string name="close">Close</string>
+    <string name="store">Store</string>
 </resources>

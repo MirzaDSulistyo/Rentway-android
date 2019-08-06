@@ -54,6 +54,35 @@ class ProductRepository
         }.asLiveData()
     }
 
+    fun getProductsByStore(token: String, storeId: String): LiveData<Resource<List<Product>>> {
+        val data = MutableLiveData<Resource<List<Product>>>()
+
+        appExecutors.networkIO().execute {
+            try {
+                val response = apiService.getProductByStore(token, storeId).execute()
+
+                when (val apiResponse = ApiResponse.create(response)) {
+                    is ApiSuccessResponse -> {
+                        data.postValue(Resource.success(apiResponse.body.products))
+                    }
+                    is ApiEmptyResponse -> {
+                        data.postValue(Resource.success(data = null))
+                    }
+                    is ApiErrorResponse -> {
+                        data.postValue(Resource.error(apiResponse.errorMessage, null))
+                    }
+                }
+            } catch (e: SocketTimeoutException) {
+                data.postValue(Resource.error("Socket Timeout", null))
+            } catch (e: ConnectException) {
+                data.postValue(Resource.error("Connection Error", null))
+            }
+
+        }
+
+        return data
+    }
+
     fun save(token: String, body: RequestBody): LiveData<Resource<Product>> {
 
         val data = MutableLiveData<Resource<Product>>()

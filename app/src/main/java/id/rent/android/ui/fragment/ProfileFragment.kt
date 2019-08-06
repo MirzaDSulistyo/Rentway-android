@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingComponent
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import id.rent.android.di.Injectable
@@ -21,6 +22,9 @@ import id.rent.android.ui.activity.HomeActivity
 import id.rent.android.ui.activity.LoginActivity
 import id.rent.android.utility.*
 import id.rent.android.R
+import id.rent.android.data.vo.Status
+import timber.log.Timber
+import id.rent.android.ui.activity.StoreActivity
 
 class ProfileFragment: Fragment(), Injectable {
 
@@ -64,15 +68,30 @@ class ProfileFragment: Fragment(), Injectable {
 
         binding.lifecycleOwner = viewLifecycleOwner
 
+        getProductsData()
+
         binding.profile = profile
 
         binding.store.setOnClickListener {
-            //startActivity(Intent(activity, StoreActivity::class.java))
+            startActivity(Intent(activity, StoreActivity::class.java))
         }
 
         binding.logout.setOnClickListener {
             activity?.setAuth(null)
             startActivity(Intent(activity, LoginActivity::class.java))
         }
+    }
+
+    private fun getProductsData() {
+        viewModel.productsByStore(auth?.token!!, profile!!.stores!![0].id.toString()).observe(viewLifecycleOwner, Observer {
+            if (it.status == Status.SUCCESS) {
+
+                Timber.d("Success get products by store ${it?.data?.size}")
+
+                binding.products = it?.data
+            } else {
+                Timber.d("message : ${it.message}")
+            }
+        })
     }
 }

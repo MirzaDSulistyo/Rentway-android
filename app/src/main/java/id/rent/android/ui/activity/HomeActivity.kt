@@ -13,6 +13,7 @@ import com.google.gson.Gson
 import com.kaopiz.kprogresshud.KProgressHUD
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
+import id.rent.android.BuildConfig
 import id.rent.android.R
 import id.rent.android.data.vo.Status
 import id.rent.android.databinding.ActivityHomeBinding
@@ -52,6 +53,10 @@ class HomeActivity : AppCompatActivity(), HasSupportFragmentInjector {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
 
         binding.lifecycleOwner = this
 

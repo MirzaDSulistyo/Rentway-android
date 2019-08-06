@@ -50,6 +50,10 @@ class ProductViewModel
             }
         }
 
+    fun productsByStore(token: String, storeId: String): LiveData<Resource<List<Product>>> {
+        return productRepository.getProductsByStore(token, storeId)
+    }
+
     fun saveProduct(token: String, body: RequestBody): LiveData<Resource<Product>> {
         return productRepository.save(token, body)
     }
