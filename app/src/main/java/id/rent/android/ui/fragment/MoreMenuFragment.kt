@@ -26,7 +26,7 @@ import id.rent.android.data.vo.Status
 import timber.log.Timber
 import id.rent.android.ui.activity.StoreActivity
 
-class ProfileFragment: Fragment(), Injectable {
+class MoreMenuFragment: Fragment(), Injectable {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -54,7 +54,7 @@ class ProfileFragment: Fragment(), Injectable {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false, dataBindingComponent)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_more_menu, container, false, dataBindingComponent)
 
         return binding.root
     }

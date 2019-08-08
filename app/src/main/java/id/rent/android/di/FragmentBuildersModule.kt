@@ -3,7 +3,7 @@ package id.rent.android.di
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import id.rent.android.ui.fragment.HomeFragment
-import id.rent.android.ui.fragment.ProfileFragment
+import id.rent.android.ui.fragment.MoreMenuFragment
 
 @Suppress("unused")
 @Module
@@ -12,5 +12,5 @@ abstract class FragmentBuildersModule {
     abstract fun contributeHomeFragment(): HomeFragment
 
     @ContributesAndroidInjector
-    abstract fun contributeProfileFragment(): ProfileFragment
+    abstract fun contributeProfileFragment(): MoreMenuFragment
 }

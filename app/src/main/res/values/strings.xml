@@ -25,4 +25,8 @@
     <string name="view_and_edit_profile">View and edit profile</string>
     <string name="menu">More</string>
     <string name="explore">Explore</string>
+    <string name="products">Products</string>
+    <string name="booking">Booking</string>
+    <string name="delivery">Delivery</string>
+    <string name="reviews">Reviews</string>
 </resources>

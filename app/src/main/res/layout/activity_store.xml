@@ -31,37 +31,205 @@
                 android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-            <TextView
+            <RelativeLayout
                     android:id="@+id/products"
+                    android:padding="16dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:text="Products"
-                    android:textAppearance="@style/TextAppearance.SemiBold18"/>
+                    android:layout_height="wrap_content">
 
-            <TextView
-                    android:id="@+id/order"
+                <ImageView
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
+                        android:id="@+id/icon_store"
+                        android:src="@drawable/ic_shopping_bag"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        tools:ignore="ContentDescription"
+                        android:layout_marginEnd="20dp"/>
+
+                <TextView
+                        android:layout_toRightOf="@id/icon_store"
+                        android:id="@+id/tv_store"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/products"
+                        android:textAppearance="@style/TextAppearance.SemiBold18"
+                        android:layout_toEndOf="@id/icon_store"
+                        tools:ignore="RelativeOverlap"/>
+
+                <TextView
+                        android:layout_below="@id/tv_store"
+                        android:layout_toRightOf="@id/icon_store"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/icon_select_products"
+                        android:text="Manage the stock levels, pricing and details of your product"
+                        android:textAppearance="@style/TextAppearance.Regular16"
+                        android:layout_toEndOf="@id/icon_store"
+                        android:textColor="#888"
+                        android:layout_toStartOf="@+id/icon_select_products"/>
+
+                <ImageView
+                        android:id="@+id/icon_select_products"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/ic_chevron_right"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        tools:ignore="ContentDescription"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:id="@+id/booking"
+                    android:padding="16dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:text="Booking"
-                    android:textAppearance="@style/TextAppearance.SemiBold18"/>
+                    android:layout_height="wrap_content">
 
-            <TextView
+                <ImageView
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
+                        android:id="@+id/icon_booking"
+                        android:src="@drawable/ic_archive"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        tools:ignore="ContentDescription"
+                        android:layout_marginEnd="20dp"/>
+
+                <TextView
+                        android:layout_toRightOf="@id/icon_booking"
+                        android:id="@+id/tv_booking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/booking"
+                        android:textAppearance="@style/TextAppearance.SemiBold18"
+                        android:layout_toEndOf="@id/icon_booking"
+                        tools:ignore="RelativeOverlap"/>
+
+                <TextView
+                        android:layout_below="@id/tv_booking"
+                        android:layout_toRightOf="@id/icon_booking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/icon_select_booking"
+                        android:text="Manage the booking from your customers"
+                        android:textAppearance="@style/TextAppearance.Regular16"
+                        android:layout_toEndOf="@id/icon_booking"
+                        android:textColor="#888"
+                        android:layout_toStartOf="@+id/icon_select_booking"/>
+
+                <ImageView
+                        android:id="@+id/icon_select_booking"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/ic_chevron_right"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        tools:ignore="ContentDescription"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
                     android:id="@+id/delivery"
+                    android:padding="16dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:text="Delivery"
-                    android:textAppearance="@style/TextAppearance.SemiBold18"/>
+                    android:layout_height="wrap_content">
 
-            <TextView
+                <ImageView
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
+                        android:id="@+id/icon_delivery"
+                        android:src="@drawable/ic_truck"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        tools:ignore="ContentDescription"
+                        android:layout_marginEnd="20dp"/>
+
+                <TextView
+                        android:layout_toRightOf="@id/icon_delivery"
+                        android:id="@+id/tv_delivery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/delivery"
+                        android:textAppearance="@style/TextAppearance.SemiBold18"
+                        android:layout_toEndOf="@id/icon_delivery"
+                        tools:ignore="RelativeOverlap"/>
+
+                <TextView
+                        android:layout_below="@id/tv_delivery"
+                        android:layout_toRightOf="@id/icon_delivery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/icon_select_delivery"
+                        android:text="Manage the deliveries status and knowing when to deliver"
+                        android:textAppearance="@style/TextAppearance.Regular16"
+                        android:layout_toEndOf="@id/icon_delivery"
+                        android:textColor="#888"
+                        android:layout_toStartOf="@+id/icon_select_delivery"/>
+
+                <ImageView
+                        android:id="@+id/icon_select_delivery"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/ic_chevron_right"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        tools:ignore="ContentDescription"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
                     android:id="@+id/reviews"
+                    android:padding="16dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:text="Reviews"
-                    android:textAppearance="@style/TextAppearance.SemiBold18"/>
+                    android:layout_height="wrap_content">
+
+                <ImageView
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
+                        android:id="@+id/icon_review"
+                        android:src="@drawable/ic_star"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        tools:ignore="ContentDescription"
+                        android:layout_marginEnd="20dp"/>
+
+                <TextView
+                        android:layout_toRightOf="@id/icon_review"
+                        android:id="@+id/tv_review"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/reviews"
+                        android:textAppearance="@style/TextAppearance.SemiBold18"
+                        android:layout_toEndOf="@id/icon_review"
+                        tools:ignore="RelativeOverlap"/>
+
+                <TextView
+                        android:layout_below="@id/tv_review"
+                        android:layout_toRightOf="@id/icon_review"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/icon_select_review"
+                        android:text="Manage and see all of your reviews, and give a response to your customers"
+                        android:textAppearance="@style/TextAppearance.Regular16"
+                        android:layout_toEndOf="@id/icon_review"
+                        android:textColor="#888"
+                        android:layout_toStartOf="@+id/icon_select_review"/>
+
+                <ImageView
+                        android:id="@+id/icon_select_review"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/ic_chevron_right"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        tools:ignore="ContentDescription"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"/>
+
+            </RelativeLayout>
 
         </LinearLayout>
 
