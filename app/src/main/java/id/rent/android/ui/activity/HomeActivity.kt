@@ -90,7 +90,7 @@ class HomeActivity : AppCompatActivity(), HasSupportFragmentInjector {
                 R.id.favorite_menu -> fragment = HomeFragment()
                 R.id.subscriptions_menu -> fragment = HomeFragment()
                 R.id.inbox_menu -> fragment = HomeFragment()
-                R.id.account_menu -> fragment = ProfileFragment()
+                R.id.more_menu -> fragment = ProfileFragment()
             }
             loadFragment(fragment)
         }

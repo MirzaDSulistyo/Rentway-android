@@ -14,4 +14,15 @@
     <string name="rent">Rent</string>
     <string name="close">Close</string>
     <string name="store">Store</string>
+    <string name="become_a_lender">Become a lender</string>
+    <string name="list_your_product">List your product</string>
+    <string name="settings">Settings</string>
+    <string name="get_help">Get help</string>
+    <string name="give_us_feedback">Give us feedback</string>
+    <string name="logout">Logout</string>
+    <string name="profile">Profile</string>
+    <string name="notifications">Notifications</string>
+    <string name="view_and_edit_profile">View and edit profile</string>
+    <string name="menu">More</string>
+    <string name="explore">Explore</string>
 </resources>

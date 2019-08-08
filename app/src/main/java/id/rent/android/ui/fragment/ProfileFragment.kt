@@ -72,6 +72,10 @@ class ProfileFragment: Fragment(), Injectable {
 
         binding.profile = profile
 
+        val name = "${profile?.user?.firstName} ${profile?.user?.lastName}"
+
+        binding.tvProfile.text = name
+
         binding.store.setOnClickListener {
             startActivity(Intent(activity, StoreActivity::class.java))
         }

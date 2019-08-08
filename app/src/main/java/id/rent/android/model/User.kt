@@ -31,4 +31,6 @@ class User {
     @SerializedName("updated_at")
     @Expose
     var updatedAt: String? = null
+
+    var name = "$firstName $lastName"
 }

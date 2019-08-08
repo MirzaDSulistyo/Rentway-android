@@ -17,7 +17,7 @@ import id.rent.android.model.User
         User::class,
         Product::class
        ],
-    version = 3,
+    version = 4,
     exportSchema = false
 )
 abstract class AppDb : RoomDatabase() {
