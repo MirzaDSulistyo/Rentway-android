@@ -15,7 +15,7 @@ import id.rent.android.di.Injectable
 import id.rent.android.viewmodel.ProductViewModel
 import javax.inject.Inject
 import id.rent.android.data.binding.FragmentDataBindingComponent
-import id.rent.android.databinding.FragmentProfileBinding
+import id.rent.android.databinding.FragmentMoreMenuBinding
 import id.rent.android.model.Auth
 import id.rent.android.model.Profile
 import id.rent.android.ui.activity.HomeActivity
@@ -38,7 +38,7 @@ class MoreMenuFragment: Fragment(), Injectable {
 
     private var dataBindingComponent: DataBindingComponent = FragmentDataBindingComponent(this)
 
-    private var binding by autoCleared<FragmentProfileBinding>()
+    private var binding by autoCleared<FragmentMoreMenuBinding>()
 
     private var auth: Auth? = null
     private var profile: Profile? = null
@@ -87,15 +87,19 @@ class MoreMenuFragment: Fragment(), Injectable {
     }
 
     private fun getProductsData() {
-        viewModel.productsByStore(auth?.token!!, profile!!.stores!![0].id.toString()).observe(viewLifecycleOwner, Observer {
-            if (it.status == Status.SUCCESS) {
+        if (profile != null) {
+            if (profile!!.stores != null && profile!!.stores!!.isNotEmpty()) {
+                viewModel.productsByStore(auth?.token!!, profile!!.stores!![0].id.toString()).observe(viewLifecycleOwner, Observer {
+                    if (it.status == Status.SUCCESS) {
 
-                Timber.d("Success get products by store ${it?.data?.size}")
+                        Timber.d("Success get products by store ${it?.data?.size}")
 
-                binding.products = it?.data
-            } else {
-                Timber.d("message : ${it.message}")
+                        binding.products = it?.data
+                    } else {
+                        Timber.d("message : ${it.message}")
+                    }
+                })
             }
-        })
+        }
     }
 }

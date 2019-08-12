@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="data"
+                type="id.rent.android.model.Product"/>
+
+        <variable
+                name="position"
+                type="Integer"/>
+
+    </data>
+
+    <RelativeLayout
+            android:id="@+id/content_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+        <TextView
+                android:id="@+id/tv_name"
+                android:text="@{data.name}"
+                android:textAppearance="@style/TextAppearance.SemiBold16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Product Name"/>
+
+        <TextView
+                android:id="@+id/tv_stock"
+                android:text="Stock on hand"
+                android:layout_below="@id/tv_name"
+                android:textAppearance="@style/TextAppearance.Regular12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Product Name"/>
+
+        <ImageView
+                android:tint="#999"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_chevron_right"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+
+</layout>

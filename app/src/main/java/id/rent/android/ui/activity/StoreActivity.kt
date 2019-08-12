@@ -18,6 +18,7 @@ import id.rent.android.utility.AppExecutors
 import id.rent.android.utility.getAuth
 import id.rent.android.utility.setHud
 import io.github.inflationx.viewpump.ViewPumpContextWrapper
+import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 
 class StoreActivity : AppCompatActivity(), HasSupportFragmentInjector {
@@ -61,6 +62,10 @@ class StoreActivity : AppCompatActivity(), HasSupportFragmentInjector {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_chevron_left)
+
+        binding.products.setOnClickListener {
+            this.startActivity<ProductActivity>()
+        }
     }
 
 //    override fun onCreateOptionsMenu(menu: Menu): Boolean {

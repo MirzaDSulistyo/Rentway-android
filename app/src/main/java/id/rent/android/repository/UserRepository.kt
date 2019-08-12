@@ -10,6 +10,7 @@ import id.rent.android.model.Auth
 import id.rent.android.model.Profile
 import id.rent.android.utility.AppExecutors
 import id.rent.android.utility.RateLimiter
+import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -73,6 +74,8 @@ class UserRepository
                 }
             } catch (e: SocketTimeoutException) {
                 data.postValue(Resource.error("Socket Timeout", null))
+            } catch (e: ConnectException) {
+                data.postValue(Resource.error("Connection Error", null))
             }
         }
 
