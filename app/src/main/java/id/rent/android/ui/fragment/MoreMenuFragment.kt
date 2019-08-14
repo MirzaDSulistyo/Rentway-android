@@ -66,6 +66,8 @@ class MoreMenuFragment: Fragment(), Injectable {
             .get(ProductViewModel::class.java)
         viewModel.setAuth(auth?.token)
 
+        viewModel.setStoreId(profile?.stores!![0].id)
+
         binding.lifecycleOwner = viewLifecycleOwner
 
         getProductsData()
@@ -89,7 +91,7 @@ class MoreMenuFragment: Fragment(), Injectable {
     private fun getProductsData() {
         if (profile != null) {
             if (profile!!.stores != null && profile!!.stores!!.isNotEmpty()) {
-                viewModel.productsByStore(auth?.token!!, profile!!.stores!![0].id.toString()).observe(viewLifecycleOwner, Observer {
+                viewModel.productsByStore.observe(viewLifecycleOwner, Observer {
                     if (it.status == Status.SUCCESS) {
 
                         Timber.d("Success get products by store ${it?.data?.size}")

@@ -7,6 +7,7 @@ import dagger.android.support.AndroidSupportInjectionModule
 import id.rent.android.ui.activity.MainApplication
 import javax.inject.Singleton
 
+@SuppressWarnings("unchecked")
 @Singleton
 @Component(
     modules = [

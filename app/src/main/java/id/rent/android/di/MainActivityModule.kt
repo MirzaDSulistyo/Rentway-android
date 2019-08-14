@@ -22,4 +22,7 @@ abstract class MainActivityModule {
     @ContributesAndroidInjector(modules = [FragmentBuildersModule::class])
     abstract fun contributeFormProductActivity(): FormProductActivity
 
+    @ContributesAndroidInjector(modules = [FragmentBuildersModule::class])
+    abstract fun contributeSelectCategoryActivity(): SelectCategoryActivity
+
 }

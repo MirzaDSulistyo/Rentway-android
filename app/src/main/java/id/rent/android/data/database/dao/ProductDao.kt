@@ -10,10 +10,10 @@ import id.rent.android.model.Product
 @Dao
 abstract class ProductDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insertProducts(users: List<Product>)
+    abstract fun insertProducts(data: List<Product>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun save(product: Product)
+    abstract fun save(data: Product)
 
     @Query("SELECT * FROM product")
     abstract fun load(): LiveData<List<Product>>

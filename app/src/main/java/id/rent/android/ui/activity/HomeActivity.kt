@@ -65,12 +65,14 @@ class HomeActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
         auth = this.getAuth()
 
-        hud = this.setHud()
+        //hud = this.setHud()
 
         if (auth == null) {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         } else {
+            hud?.show()
+
             viewModel.setAuth(auth?.token)
 
             viewModel.profile.observe(this, Observer {
@@ -78,6 +80,14 @@ class HomeActivity : AppCompatActivity(), HasSupportFragmentInjector {
                     Timber.d("profile ${Gson().toJson(it.data)}")
 
                     this.setProfile(it.data)
+                }
+            })
+
+            viewModel.master.observe(this, Observer {
+                if (it.status == Status.SUCCESS) {
+                    Timber.d("data master success")
+                } else {
+                    Timber.d("data master unsuccessfully")
                 }
             })
         }

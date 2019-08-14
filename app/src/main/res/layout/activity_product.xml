@@ -7,7 +7,11 @@
 
         <import type="id.rent.android.model.Product"/>
 
-        <import type="java.util.List"/>
+        <import type="androidx.lifecycle.LiveData" />
+
+        <import type="id.rent.android.data.vo.Resource" />
+
+        <import type="java.util.List" />
 
         <import type="id.rent.android.model.Profile"/>
 
@@ -17,7 +21,7 @@
 
         <variable
                 name="products"
-                type="List&lt;Product>"/>
+                type="LiveData&lt;Resource&lt;List&lt;Product>>>"/>
 
     </data>
 
@@ -61,7 +65,7 @@
             <TextView
                     android:layout_marginLeft="16dp"
                     android:layout_centerVertical="true"
-                    android:text="Search by name"
+                    android:text="@string/search_by_name"
                     android:layout_toRightOf="@id/iv_search"
                     android:textAppearance="@style/TextAppearance.Regular16"
                     android:layout_width="wrap_content"

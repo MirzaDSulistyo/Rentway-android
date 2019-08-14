@@ -27,6 +27,7 @@ import id.rent.android.utility.getProfile
 import id.rent.android.utility.setHud
 import id.rent.android.viewmodel.ProductViewModel
 import io.github.inflationx.viewpump.ViewPumpContextWrapper
+import kotlinx.android.synthetic.main.activity_product.*
 import org.jetbrains.anko.startActivity
 import timber.log.Timber
 import javax.inject.Inject
@@ -59,15 +60,17 @@ class ProductActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product)
 
-        viewModel = ViewModelProviders.of(this, viewModelFactory)
-            .get(ProductViewModel::class.java)
-        viewModel.setAuth(auth?.token)
-
         binding.lifecycleOwner = this
 
         auth = this.getAuth()
 
         profile = this.getProfile()
+
+        viewModel = ViewModelProviders.of(this, viewModelFactory)
+            .get(ProductViewModel::class.java)
+        viewModel.setAuth(auth?.token)
+
+        viewModel.setStoreId(profile?.stores!![0].id)
 
         hud = this.setHud()
 
@@ -87,6 +90,19 @@ class ProductActivity : AppCompatActivity(), HasSupportFragmentInjector {
         }
 
         binding.rvProducts.adapter = adapter
+
+        refresh_products.setColorSchemeResources(
+            android.R.color.holo_blue_bright,
+            android.R.color.holo_green_light,
+            android.R.color.holo_orange_light,
+            android.R.color.holo_red_light
+        )
+
+        refresh_products.setOnRefreshListener {
+            viewModel.refresh()
+        }
+
+        binding.products = viewModel.productsByStore
 
         getProductsData()
 
@@ -117,15 +133,19 @@ class ProductActivity : AppCompatActivity(), HasSupportFragmentInjector {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        viewModel.refresh()
+    }
+
     private fun getProductsData() {
         if (profile != null) {
             if (profile!!.stores != null && profile!!.stores!!.isNotEmpty()) {
-                viewModel.productsByStore(auth?.token!!, profile!!.stores!![0].id.toString()).observe(this, Observer {
+                viewModel.productsByStore.observe(this, Observer {
                     if (it.status == Status.SUCCESS) {
 
-                        Timber.d("Success get products by store ${it?.data?.size}")
-
-                        binding.products = it?.data
+                        Timber.d("Success get products by store ${it?.data?.size} ${Gson().toJson(it?.data)}")
 
                         adapter.submitList(it?.data)
                     } else {

@@ -1,10 +1,7 @@
 package id.rent.android.data.api
 
 import androidx.lifecycle.LiveData
-import id.rent.android.model.Auth
-import id.rent.android.model.Product
-import id.rent.android.model.ProductList
-import id.rent.android.model.Profile
+import id.rent.android.model.*
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
@@ -58,4 +55,11 @@ interface ApiService {
         @Header("token") token: String,
         @Path("id") id: String
     ): Call<Product>
+
+    /* ===== MASTER ===== */
+
+    @GET("master")
+    fun getDataMaster(
+        @Header("token") token: String
+    ): LiveData<ApiResponse<Master>>
 }

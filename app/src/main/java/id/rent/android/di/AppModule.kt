@@ -5,9 +5,8 @@ import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import id.rent.android.data.api.ApiService
-import id.rent.android.data.database.dao.ProductDao
-import id.rent.android.data.database.dao.UserDao
 import id.rent.android.data.database.AppDb
+import id.rent.android.data.database.dao.*
 import id.rent.android.utility.LiveDataCallAdapterFactory
 import id.rent.android.utility.Vars
 import retrofit2.Retrofit
@@ -52,6 +51,30 @@ class AppModule {
     @Provides
     fun provideProductDao(db: AppDb): ProductDao {
         return db.productDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideRentWayDao(db: AppDb): RentWayDao {
+        return db.rentWayDao()
+    }
+
+    @Singleton
+    @Provides
+    fun providePaymentTypeDao(db: AppDb): PaymentTypeDao {
+        return db.paymentTypeDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideCategoryDao(db: AppDb): CategoryDao {
+        return db.categoryDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideMasterDao(db: AppDb): MasterDao {
+        return db.masterDao()
     }
 
 }

@@ -5,22 +5,19 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import id.rent.android.data.vo.Resource
-import id.rent.android.model.Auth
 import id.rent.android.model.Master
-import id.rent.android.model.Profile
 import id.rent.android.model.RentWay
 import id.rent.android.repository.MasterRepository
-import id.rent.android.repository.UserRepository
 import id.rent.android.utility.AbsentLiveData
 import javax.inject.Inject
 
-class UserViewModel
+class DataMasterViewModel
 @Inject constructor(
-    private val userRepository: UserRepository,
     private val masterRepository: MasterRepository
 ) : ViewModel()
 {
     private val _token = MutableLiveData<String>()
+
     val token: LiveData<String>
         get() = _token
 
@@ -36,19 +33,6 @@ class UserViewModel
         }
     }
 
-    fun login(email: String, pass: String): LiveData<Resource<Auth>> {
-        return userRepository.login(email, pass)
-    }
-
-    val profile: LiveData<Resource<Profile>> = Transformations
-        .switchMap(_token) {token ->
-            if (token == null) {
-                AbsentLiveData.create()
-            } else {
-                userRepository.profile(token)
-            }
-        }
-
     val master: LiveData<Resource<Master>> = Transformations
         .switchMap(_token) {token ->
             if (token == null) {
@@ -57,5 +41,4 @@ class UserViewModel
                 masterRepository.getDataMaster(token)
             }
         }
-
 }

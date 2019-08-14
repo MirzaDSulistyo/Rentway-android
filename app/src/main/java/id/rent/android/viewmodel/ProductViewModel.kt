@@ -5,7 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import id.rent.android.data.vo.Resource
+import id.rent.android.model.Master
 import id.rent.android.model.Product
+import id.rent.android.repository.MasterRepository
 import id.rent.android.repository.ProductRepository
 import okhttp3.RequestBody
 import javax.inject.Inject
@@ -13,7 +15,8 @@ import id.rent.android.utility.AbsentLiveData
 
 class ProductViewModel
 @Inject constructor(
-    private val productRepository: ProductRepository
+    private val productRepository: ProductRepository,
+    masterRepository: MasterRepository
 ) : ViewModel()
 {
     private val _token = MutableLiveData<String>()
@@ -50,9 +53,23 @@ class ProductViewModel
             }
         }
 
-    fun productsByStore(token: String, storeId: String): LiveData<Resource<List<Product>>> {
-        return productRepository.getProductsByStore(token, storeId)
-    }
+    val master: LiveData<Resource<Master>> = Transformations
+        .switchMap(_token) {token ->
+            if (token == null) {
+                AbsentLiveData.create()
+            } else {
+                masterRepository.getDataMaster(token)
+            }
+        }
+
+    val productsByStore: LiveData<Resource<List<Product>>> = Transformations
+        .switchMap(_token) {token ->
+            if (token == null) {
+                AbsentLiveData.create()
+            } else {
+                productRepository.getProductsByStore(token, id.value!!)
+            }
+        }
 
     fun saveProduct(token: String, body: RequestBody): LiveData<Resource<Product>> {
         return productRepository.save(token, body)

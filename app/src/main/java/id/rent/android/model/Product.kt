@@ -2,10 +2,13 @@ package id.rent.android.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import id.rent.android.data.database.converter.CategoryTypeConverter
 
 @Entity
+@TypeConverters(CategoryTypeConverter::class)
 data class Product (
     @PrimaryKey
     @SerializedName("_id")
@@ -20,6 +23,15 @@ data class Product (
     @SerializedName("description")
     @Expose
     val description: String? = null,
+    @SerializedName("category")
+    @Expose
+    val category: Category? = null,
+    @SerializedName("available")
+    @Expose
+    val available: String? = null,
+    @SerializedName("commission")
+    @Expose
+    val commission: String? = null,
     @SerializedName("photo")
     @Expose
     val photo: String? = null,

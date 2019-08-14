@@ -41,7 +41,10 @@
                 android:theme="@style/AppTheme.Fullscreen"/>
         <activity
                 android:name=".ui.activity.FormProductActivity"
-                android:theme="@style/AppTheme.Fullscreen" />
+                android:theme="@style/AppTheme.Fullscreen"/>
+        <activity
+                android:name=".ui.activity.SelectCategoryActivity"
+                android:theme="@style/AppTheme.Fullscreen"/>
     </application>
 
 </manifest>

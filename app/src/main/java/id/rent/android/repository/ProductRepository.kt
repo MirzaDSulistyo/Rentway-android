@@ -40,9 +40,11 @@ class ProductRepository
                 }
             }
 
-            override fun shouldFetch(data: List<Product>?): Boolean {
-                return true
-            }
+//            override fun shouldFetch(data: List<Product>?): Boolean {
+//                return true
+//            }
+
+            override fun shouldFetch(data: List<Product>?) = true
 
             override fun createCall() = apiService.getProduct(token)
 
