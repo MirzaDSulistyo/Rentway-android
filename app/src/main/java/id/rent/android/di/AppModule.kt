@@ -77,4 +77,10 @@ class AppModule {
         return db.masterDao()
     }
 
+    @Singleton
+    @Provides
+    fun provideFavoriteDao(db: AppDb): FavoriteDao {
+        return db.favoriteDao()
+    }
+
 }

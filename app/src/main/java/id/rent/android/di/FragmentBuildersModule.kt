@@ -2,6 +2,7 @@ package id.rent.android.di
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import id.rent.android.ui.fragment.FavoriteFragment
 import id.rent.android.ui.fragment.HomeFragment
 import id.rent.android.ui.fragment.MoreMenuFragment
 
@@ -13,4 +14,7 @@ abstract class FragmentBuildersModule {
 
     @ContributesAndroidInjector
     abstract fun contributeProfileFragment(): MoreMenuFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeFavoriteFragment(): FavoriteFragment
 }

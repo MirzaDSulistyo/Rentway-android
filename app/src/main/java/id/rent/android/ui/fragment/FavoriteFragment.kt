@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingComponent
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -15,63 +14,76 @@ import id.rent.android.di.Injectable
 import id.rent.android.utility.AppExecutors
 import javax.inject.Inject
 import id.rent.android.data.binding.FragmentDataBindingComponent
-import id.rent.android.databinding.FragmentHomeBinding
+import id.rent.android.databinding.FragmentFavoriteBinding
 import id.rent.android.model.Auth
-import id.rent.android.model.Product
-import id.rent.android.ui.adapter.ProductAdapter
+import id.rent.android.model.Favorite
+import id.rent.android.model.Profile
+import id.rent.android.ui.adapter.FavoriteAdapter
 import id.rent.android.utility.autoCleared
 import id.rent.android.utility.getAuth
-import id.rent.android.viewmodel.ProductViewModel
-import kotlinx.android.synthetic.main.fragment_home.*
-import timber.log.Timber
+import id.rent.android.utility.getProfile
+import kotlinx.android.synthetic.main.fragment_favorite.*
+import id.rent.android.viewmodel.FavoriteViewModel
 import id.rent.android.R
 import id.rent.android.data.vo.Status
+import timber.log.Timber
 
-class HomeFragment : Fragment(), Injectable {
+class FavoriteFragment : Fragment(), Injectable {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    private lateinit var viewModel: ProductViewModel
 
     @Inject
     lateinit var appExecutors: AppExecutors
 
     private var dataBindingComponent: DataBindingComponent = FragmentDataBindingComponent(this)
 
-    var binding by autoCleared<FragmentHomeBinding>()
+    private lateinit var viewModel: FavoriteViewModel
 
-    private var adapter by autoCleared<ProductAdapter>()
+    var binding by autoCleared<FragmentFavoriteBinding>()
+
+    var adapter by autoCleared<FavoriteAdapter>()
 
     private var auth: Auth? = null
+
+    private var profile: Profile? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         auth = activity?.getAuth()
+
+        profile = activity?.getProfile()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false, dataBindingComponent)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_favorite, container, false, dataBindingComponent)
 
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = ViewModelProviders.of(this, viewModelFactory)
-            .get(ProductViewModel::class.java)
+            .get(FavoriteViewModel::class.java)
         viewModel.setAuth(auth?.token)
 
         binding.lifecycleOwner = viewLifecycleOwner
         initRecyclerView()
 
-        val rvAdapter = ProductAdapter(
+        val rvAdapter = FavoriteAdapter(
             dataBindingComponent = dataBindingComponent,
             appExecutors = appExecutors
-        ) {  product -> details(product) }
+        ) { item -> details(item) }
 
         binding.rvProducts.adapter = rvAdapter
         adapter = rvAdapter
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        viewModel.refresh()
     }
 
     private fun initRecyclerView() {
@@ -86,20 +98,24 @@ class HomeFragment : Fragment(), Injectable {
             viewModel.refresh()
         }
 
-        binding.products = viewModel.products
-        viewModel.products.observe(viewLifecycleOwner, Observer { result ->
+        refresh_products.visibility = View.GONE
+//        shimmer.startShimmer()
+
+        //binding.products = viewModel.data
+        viewModel.data.observe(viewLifecycleOwner, Observer { result ->
             adapter.submitList(result?.data)
             refresh_products.isRefreshing = false
-            Timber.d("message : ${result.message}")
-
+            refresh_products.visibility = View.VISIBLE
+//            shimmer.visibility = View.GONE
+//            shimmer.stopShimmer()
             if (result.status == Status.ERROR) {
-                Toast.makeText(context, result.message, Toast.LENGTH_LONG).show()
+                Timber.d("message : ${result.message}")
             }
         })
     }
 
-    private fun details(product: Product) {
-        Timber.d("product ${product.name}")
+    private fun details(data: Favorite) {
+        //
     }
 
 }

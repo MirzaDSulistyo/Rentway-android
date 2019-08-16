@@ -16,9 +16,10 @@ import id.rent.android.model.*
         PaymentType::class,
         RentWay::class,
         Category::class,
-        Master::class
+        Master::class,
+        Favorite::class
     ],
-    version = 9,
+    version = 10,
     exportSchema = false
 )
 abstract class AppDb : RoomDatabase() {
@@ -34,5 +35,7 @@ abstract class AppDb : RoomDatabase() {
     abstract fun categoryDao(): CategoryDao
 
     abstract fun masterDao(): MasterDao
+
+    abstract fun favoriteDao(): FavoriteDao
 
 }

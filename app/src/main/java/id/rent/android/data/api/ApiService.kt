@@ -62,4 +62,11 @@ interface ApiService {
     fun getDataMaster(
         @Header("token") token: String
     ): LiveData<ApiResponse<Master>>
+
+    /* ===== FAVORITE ===== */
+
+    @GET("favorite")
+    fun getFavorite(
+        @Header("token") token: String
+    ): LiveData<ApiResponse<FavoriteList>>
 }

@@ -18,6 +18,7 @@ import id.rent.android.R
 import id.rent.android.data.vo.Status
 import id.rent.android.databinding.ActivityHomeBinding
 import id.rent.android.model.Auth
+import id.rent.android.ui.fragment.FavoriteFragment
 import id.rent.android.ui.fragment.HomeFragment
 import id.rent.android.ui.fragment.MoreMenuFragment
 import id.rent.android.utility.AppExecutors
@@ -97,7 +98,7 @@ class HomeActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
             when (item.itemId) {
                 R.id.home_menu -> fragment = HomeFragment()
-                R.id.favorite_menu -> fragment = HomeFragment()
+                R.id.favorite_menu -> fragment = FavoriteFragment()
                 R.id.subscriptions_menu -> fragment = HomeFragment()
                 R.id.inbox_menu -> fragment = HomeFragment()
                 R.id.more_menu -> fragment = MoreMenuFragment()
