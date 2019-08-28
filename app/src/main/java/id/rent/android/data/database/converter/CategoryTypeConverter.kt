@@ -3,22 +3,26 @@ package id.rent.android.data.database.converter
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import id.rent.android.model.Category
+import timber.log.Timber
 
 object CategoryTypeConverter {
 
-    var gson = Gson()
-
     @TypeConverter
     @JvmStatic
-    fun stringToUser(data: String?) : Category {
+    fun stringToCategory(data: String?) : Category {
+        Timber.d("convert to category $data")
+        if (data == null) {
+            Timber.d("convert to category $data is null")
+            return Category()
+        }
 
-        return gson.fromJson(data, Category::class.java)
+        return Gson().fromJson(data, Category::class.java)
     }
 
     @TypeConverter
     @JvmStatic
-    fun userToString(data: Category?): String? {
-        return gson.toJson(data)
+    fun categoryToString(data: Category?): String? {
+        return Gson().toJson(data)
     }
 
 }

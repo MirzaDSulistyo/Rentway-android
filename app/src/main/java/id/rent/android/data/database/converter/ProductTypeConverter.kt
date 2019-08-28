@@ -6,19 +6,20 @@ import id.rent.android.model.Product
 
 object ProductTypeConverter {
 
-    var gson = Gson()
-
     @TypeConverter
     @JvmStatic
     fun stringToProduct(data: String?) : Product {
+        if (data == null) {
+            return Product()
+        }
 
-        return gson.fromJson(data, Product::class.java)
+        return Gson().fromJson(data, Product::class.java)
     }
 
     @TypeConverter
     @JvmStatic
     fun productToString(data: Product?): String? {
-        return gson.toJson(data)
+        return Gson().toJson(data)
     }
 
 }
